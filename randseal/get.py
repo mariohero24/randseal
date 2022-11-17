@@ -2,7 +2,7 @@ import discord, random
 from importlib import resources
 
 def seal():
-	f"""
+	"""
 	Returns a `discord.File()` of a seal for py-cord
 	"""
 	sealrand = f"{random.randrange(1, 82)}"
