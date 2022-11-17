@@ -17,4 +17,4 @@ bot.run("token")
 
 The output should look like this, without the `fun` in the slash command
 
-<img src="randseal/image.png" alt="Example with Cow Bot">
+![image.png](https://example.cow.futbol "Is this loading for you?")
