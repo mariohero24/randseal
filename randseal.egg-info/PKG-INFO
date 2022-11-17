@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: randseal
-Version: 1.0.1
+Version: 1.0.0
 Summary: Generates a seal image for py-cord
 Home-page: https://github.com/mariohero24/randseal
 Author: Guard Boi
@@ -28,7 +28,3 @@ async def seal(ctx):
 
 bot.run("token")
 ```
-
-The output should look like this, without the `fun` in the slash command
-
-<img src="randseal/image.png" alt="Example with Cow Bot">
