@@ -14,7 +14,3 @@ async def seal(ctx):
 
 bot.run("token")
 ```
-
-The output should look like this, without the `fun` in the slash command
-
-![image.png](https://example.cow.futbol "Is this loading for you?")
