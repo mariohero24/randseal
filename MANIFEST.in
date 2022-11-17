@@ -1,1 +1,2 @@
 include randseal/randseal/*.jpg
+include randseal/randseal/image.png
