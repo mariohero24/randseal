@@ -1,7 +1,7 @@
 Metadata-Version: 2.1
 Name: randseal
-Version: 1.1.1
-Summary: Generates a seal image for py-cord
+Version: 1.1.2
+Summary: Generates a random seal image for py-cord
 Home-page: https://github.com/mariohero24/randseal
 Author: Guard Boi
 Author-email: guard@cow.futbol
@@ -17,7 +17,7 @@ Simple package that produces a seal image. The image is then output as a `discor
 
 ### Usage example
 ```py
-from discord.ext import seal
+from discord.ext.randseal import seal
 import discord
 
 bot = discord.Bot(intents=discord.Intents.default())
