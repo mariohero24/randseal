@@ -3,7 +3,7 @@ Simple package that produces a seal image. The image is then output as a `discor
 
 ### Usage example
 ```py
-from randseal.get import seal
+from discord.ext import seal
 import discord
 
 bot = discord.Bot(intents=discord.Intents.default())
