@@ -1,5 +1,6 @@
 LICENCE
 MANIFEST.in
+README.md
 pyproject.toml
 setup.cfg
 randseal/0001.jpg
