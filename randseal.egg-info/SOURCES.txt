@@ -86,6 +86,7 @@ randseal/0081.jpg
 randseal/0082.jpg
 randseal/__init__.py
 randseal/get.py
+randseal/utils.py
 randseal.egg-info/PKG-INFO
 randseal.egg-info/SOURCES.txt
 randseal.egg-info/dependency_links.txt
