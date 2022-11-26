@@ -37,4 +37,4 @@ def embed(num: int=None, title: str=random.choice(randoms)):
 	embeda = discord.Embed(colour=0x2f3136, title=title).set_image(url=f"https://raw.githubusercontent.com/mariohero24/randseal/main/randseal/00{sealrand}.jpg")
 	return embeda
 
-# py -3 -m twine upload --repository pypi dist/*
+# python3 -m twine upload --repository pypi dist/*
