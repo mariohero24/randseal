@@ -1,5 +1,6 @@
 import discord, random
 from importlib import resources
+from .utils import blank
 
 def file(num: int=None):
 	"""
@@ -34,7 +35,7 @@ def embed(num: int=None, title: str=random.choice(randoms)):
 	if len(sealrand) == 1:
 		sussy = sealrand
 		sealrand = "0" + f"{sussy}"
-	embeda = discord.Embed(colour=0x2f3136, title=title).set_image(url=f"https://raw.githubusercontent.com/mariohero24/randseal/main/randseal/00{sealrand}.jpg")
+	embeda = discord.Embed(colour=blank(), title=title).set_image(url=f"https://raw.githubusercontent.com/mariohero24/randseal/main/randseal/00{sealrand}.jpg")
 	return embeda
 
-# py -3 -m twine upload --repository pypi dist/*
+# python3 -m twine upload --repository pypi dist/*

@@ -13,4 +13,6 @@ async def fetchrole(context, id: int):
 	role = discord.utils.get(roles, id=id)
 	return role
 
-	
+def blank() -> int:
+	"""Returns a colour hex exacly like a `discord.Embed`."""
+	return 0x2f3136
