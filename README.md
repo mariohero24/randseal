@@ -8,13 +8,14 @@ import discord
 
 bot = discord.Bot(intents=discord.Intents.default())
 
-@bot.slash_command(description="Gets a random seal image")
+@bot.slash_command()
 async def sealimg(ctx):
 	await ctx.respond(file=ranseal.file())
 
-@bot.slash_command(description="Gets a random seal image")
-async def sealembed(ctx):
-	await ctx.respond(embed=ranseal.embed(title="Here is your seal!"))
+@bot.slash_command()
+async def sealembed(ctx, title):
+	embed = discord.Embed(colour=randseal.utils.blank(), title=title)
+	await ctx.respond(embed=ranseal.embed(embed=embed))
 
 bot.run("token")
 ```
