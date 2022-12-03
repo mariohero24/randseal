@@ -1,6 +1,6 @@
-import discord, random
+from random import randrange
 from importlib import resources
-from .utils import blank
+from discord import File, Embed
 
 def file():
 	"""
@@ -10,7 +10,7 @@ def file():
 	"""
 	try:
 		try:
-			sealrand = f"{random.randrange(1, 82)}"
+			sealrand = f"{randrange(1, 82)}"
 		finally:
 			if len(sealrand) == 1:
 				try:
@@ -22,11 +22,11 @@ def file():
 			f = resources.open_text('randseal', f'00{sealrand}.jpg')
 		finally:
 			try:
-				return discord.File(fp=f.name, filename=f"{sealrand}.png")
+				return File(fp=f.name, filename=f"{sealrand}.png")
 			finally:
 				f.close()
 
-def embed(embed: discord.Embed):
+def embed(embed: Embed):
 	"""
 	Ouputs a modifed `discord.Embed`
 	## Parameters
@@ -37,13 +37,17 @@ def embed(embed: discord.Embed):
 	"""
 	try:
 		try:
-			sealrand = f"{random.randrange(1, 82)}"
+			sealrand = str({randrange(1, 83)})
 		finally:
-			if len(sealrand) == 1:
-				try:
-					sussy = sealrand
-				finally:
-					sealrand = "0" + f"{sussy}"
+			try:
+				if sealrand == "7":
+					sealrand = "83"
+			finally:
+				if len(sealrand) == 1:
+					try:
+						sussy = sealrand
+					finally:
+						sealrand = "0" + f"{sussy}"
 	finally:
 		try:
 			embeda = embed
