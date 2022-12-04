@@ -28,4 +28,4 @@ __description__ = "Generates a random seal image for py-cord"
 __licence__ = "MIT"
 
 from .get import *
-from _version import __version__
+from ._version import __version__
