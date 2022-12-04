@@ -2,7 +2,7 @@ import discord, random
 from importlib import resources
 from .utils import blank
 
-def file():
+def File():
 	"""
 	Returns a `discord.File()` of a seal for py-cord
 	"""
@@ -17,7 +17,7 @@ def file():
 		with resources.open_text('randseal', f'00{sealrand}.jpg') as f:
 			return discord.File(fp=f.name, filename=f"{sealrand}.png")
 
-def embed(title: str = random.choice(["Here is your seal!", "Arff Arff!", ":3", "Seap!"])):
+def Embed(title: str = random.choice(["Here is your seal!", "Arff Arff!", ":3", "Seap!"])):
 	"""
 	Returns a `discord.Embed()` of a seal
 	"""

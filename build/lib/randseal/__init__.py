@@ -22,8 +22,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-__version__ = "1.4.2"
 __author__ = "Guard Boi"
 __email__ = "guard@cow.futbol"
 __description__ = "Generates a random seal image for py-cord"
 __licence__ = "MIT"
+
+from .get import *
+from _version import __version__
