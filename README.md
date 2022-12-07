@@ -7,14 +7,15 @@ import randseal
 from discord import Bot, Intents
 
 bot = Bot(intents=Intents.default())
+client = randseal.Client()
 
 @bot.slash_command()
 async def sealimg(ctx):
-	await ctx.respond(file=randseal.File())
+	await ctx.respond(file=await client.asyncFile())
 
 @bot.slash_command()
 async def sealembed(ctx):
-	await ctx.respond(embed=randseal.Embed())
+	await ctx.respond(embed=client.Embed())
 
 bot.run("token")
 ```
