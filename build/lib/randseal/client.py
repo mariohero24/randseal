@@ -9,8 +9,9 @@ class Client:
 	"""
 	The client class for the randseal package
 	"""
-	def __init__(self, session: aiohttp.ClientSession=None):
+	def __init__(self, session: aiohttp.ClientSession=None, session2: aiohttp.ClientSession=None):
 		self.session = aiohttp.ClientSession(auto_decompress=False) or session
+		self.session2 = aiohttp.ClientSession() or session2
 
 	async def asyncFile(self):
 		"""
