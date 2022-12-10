@@ -11,7 +11,6 @@ class Client:
 	"""
 	def __init__(self, session: aiohttp.ClientSession=None, session2: aiohttp.ClientSession=None):
 		self.session = aiohttp.ClientSession(auto_decompress=False) or session
-		self.session2 = aiohttp.ClientSession() or session2
 
 	async def asyncFile(self):
 		"""
@@ -42,9 +41,9 @@ class Client:
 					sussy = sealrand
 					sealrand = "0" + f"{sussy}"
 		finally:
-			r = requests.get(f"https://raw.githubusercontent.com/mariohero24/randseal/fbba6657532d0b6db21c91986843a08a7ab19f26/randseal/00{sealrand}.jpg", stream=True)
-			e=io.BytesIO(r.content)
-			return discord.File(fp=e, filename=sealrand + ".jpg")
+			with requests.get(f"https://raw.githubusercontent.com/mariohero24/randseal/fbba6657532d0b6db21c91986843a08a7ab19f26/randseal/00{sealrand}.jpg", stream=True) as r:
+				e=io.BytesIO(r.content)
+				return discord.File(fp=e, filename=sealrand + ".jpg")
 
 
 
@@ -65,11 +64,11 @@ class Client:
 			finally:
 				return embeda
 
-	async def fetchrole(self, context, id: int) -> discord.Role | None:
+	async def fetchrole(self, context, id: int) -> discord.Role:
 		"""
 		Returns a `discord.Role` from ID, regardless of the state of your bot's internal cache.
 		# Parameters
-		`context`: Can be any object with the `discord.Guild` object in it. 
+		`context`: Can be any object with the `.guild` variable in it. 
 		`id`: The ID of the role you want to get
 		### Context Examples:
 		`discord.Message` (if message is in a guild), `discord.Member`, `discord.ApplicationContext`, `discord.ext.commands.Context`.
@@ -78,9 +77,7 @@ class Client:
 		role = discord.utils.get(roles, id=id)
 		return role
 
-	def blank(self) -> int:
-		"""Returns a colour hex exacly like a `discord.Embed`."""
-		return 0x2f3136
+	blank=0x2f3136
 
 __author__ = "Guard Boi"
 __email__ = "guard@cow.futbol"
