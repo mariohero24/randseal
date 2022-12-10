@@ -1,7 +1,7 @@
 # randseal
 Simple package that produces a seal image. The image is then output as a `discord.File` for Pycord.
 
-### Usage example
+### Usage examples
 ```py
 import randseal
 from discord import Bot, Intents
