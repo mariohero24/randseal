@@ -2,15 +2,22 @@
 The client class for the randseal package
 """
 
-import discord, aiohttp, requests, random, io
+import discord
+import aiohttp
+import requests
+import random
+import io
 from importlib import metadata
+
 
 class Client:
 	"""
 	The client class for the randseal package
 	"""
-	def __init__(self, session: aiohttp.ClientSession=None, session2: aiohttp.ClientSession=None):
+
+	def __init__(self, session: aiohttp.ClientSession = None, session2: aiohttp.ClientSession = None):
 		self.session = aiohttp.ClientSession(auto_decompress=False) or session
+		self.session2 = aiohttp.ClientSession() or session2
 
 	async def asyncFile(self):
 		"""
@@ -28,7 +35,6 @@ class Client:
 				hi = io.BytesIO(await r.read())
 				return discord.File(fp=hi, filename=sealrand + ".jpg")
 
-
 	def File(self):
 		"""
 		Returns a `discord.File()` of a seal for py-cord in a potentially blocking way
@@ -42,12 +48,10 @@ class Client:
 					sealrand = "0" + f"{sussy}"
 		finally:
 			with requests.get(f"https://raw.githubusercontent.com/mariohero24/randseal/fbba6657532d0b6db21c91986843a08a7ab19f26/randseal/00{sealrand}.jpg", stream=True) as r:
-				e=io.BytesIO(r.content)
+				e = io.BytesIO(r.content)
 				return discord.File(fp=e, filename=sealrand + ".jpg")
 
-
-
-	def Embed(self, title: str = random.choice(["Here is your seal!", "Arff Arff!", ":3", "Seap!"])):
+	def Embed(self, title: str = '** **'):
 		"""
 		Returns a `discord.Embed()` of a seal which can be edited or used in a message
 		"""
@@ -56,13 +60,10 @@ class Client:
 				sealrand = f"{random.randrange(1, 82)}"
 			finally:
 				if len(sealrand) == 1:
-						sussy = sealrand
-						sealrand = "0" + f"{sussy}"
+					sussy = sealrand
+					sealrand = "0" + f"{sussy}"
 		finally:
-			try:
-				embeda = discord.Embed(colour=Client.blank(), title=title).set_image(url=f"https://raw.githubusercontent.com/mariohero24/randseal/fbba6657532d0b6db21c91986843a08a7ab19f26/randseal/00{sealrand}.jpg")
-			finally:
-				return embeda
+			return discord.Embed(colour=Client.blank(), title=title).set_image(url=f"https://raw.githubusercontent.com/mariohero24/randseal/fbba6657532d0b6db21c91986843a08a7ab19f26/randseal/00{sealrand}.jpg")
 
 	async def fetchrole(self, context, id: int) -> discord.Role:
 		"""
@@ -77,7 +78,8 @@ class Client:
 		role = discord.utils.get(roles, id=id)
 		return role
 
-	blank=0x2f3136
+	blank = 0x2f3136
+
 
 __author__ = "Guard Boi"
 __email__ = "guard@cow.futbol"
