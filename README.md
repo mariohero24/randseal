@@ -11,7 +11,8 @@ client = randseal.Client()
 
 @bot.slash_command()
 async def sealimg(ctx):
-	await ctx.respond(file=await client.asyncFile())
+	file=await client.asyncFile()
+	await ctx.respond(file=file)
 
 @bot.slash_command()
 async def sealembed(ctx):

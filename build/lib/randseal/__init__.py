@@ -23,5 +23,4 @@ SOFTWARE.
 """
 
 
-
 from .client import Client, __author__, __description__, __email__, __licence__, __version__

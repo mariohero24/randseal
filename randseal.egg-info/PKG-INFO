@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: randseal
-Version: 2.1.1
+Version: 2.1.2
 Summary: Generates a random seal image for py-cord
 Home-page: https://github.com/mariohero24/randseal
 Author: Guard Boi
@@ -25,7 +25,8 @@ client = randseal.Client()
 
 @bot.slash_command()
 async def sealimg(ctx):
-	await ctx.respond(file=await client.asyncFile())
+	file=await client.asyncFile()
+	await ctx.respond(file=file)
 
 @bot.slash_command()
 async def sealembed(ctx):

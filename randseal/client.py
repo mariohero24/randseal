@@ -1,7 +1,3 @@
-"""
-The client class for the randseal package
-"""
-
 import discord
 import aiohttp
 import requests
@@ -47,9 +43,8 @@ class Client:
 					sussy = sealrand
 					sealrand = "0" + f"{sussy}"
 		finally:
-			with requests.get(f"https://raw.githubusercontent.com/mariohero24/randseal/fbba6657532d0b6db21c91986843a08a7ab19f26/randseal/00{sealrand}.jpg", stream=True) as r:
-				e = io.BytesIO(r.content)
-				return discord.File(fp=e, filename=sealrand + ".jpg")
+			r=requests.get(f"https://raw.githubusercontent.com/mariohero24/randseal/fbba6657532d0b6db21c91986843a08a7ab19f26/randseal/00{sealrand}.jpg", stream=True)
+			return discord.File(fp=io.BytesIO(r.content), filename=sealrand + ".jpg")
 
 	def Embed(self, title: str = '** **'):
 		"""
@@ -75,16 +70,14 @@ class Client:
 		`discord.Message` (if message is in a guild), `discord.Member`, `discord.ApplicationContext`, `discord.ext.commands.Context`.
 		"""
 		roles = await context.guild.fetch_roles()
-		role = discord.utils.get(roles, id=id)
-		return role
+		return discord.utils.get(roles, id=id)
 
 	blank = 0x2f3136
 
 
-__author__ = "Guard Boi"
-__email__ = "guard@cow.futbol"
-__description__ = "Generates a random seal image for py-cord"
-__licence__ = "MIT"
+__author__: str = "Guard Boi"
+__description__: str = "Generates a random seal image for py-cord"
+__licence__: str = "MIT"
 __version__ = metadata.version("randseal")
 
 # python3 -m twine upload --repository pypi dist/*
