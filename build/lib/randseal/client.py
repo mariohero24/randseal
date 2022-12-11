@@ -46,7 +46,7 @@ class Client:
 				f"https://raw.githubusercontent.com/mariohero24/randseal/fbba6657532d0b6db21c91986843a08a7ab19f26/randseal/00{sealrand}.jpg", stream=True)
 			return discord.File(fp=io.BytesIO(r.content), filename=sealrand + ".jpg")
 
-	def Embed(self, title: str = '** **'):
+	def Embed(self, title: str = None):
 		"""
 		Returns a `discord.Embed()` of a seal which can be edited or used in a message
 		"""
@@ -58,22 +58,19 @@ class Client:
 					sussy = sealrand
 					sealrand = "0" + f"{sussy}"
 		finally:
-			return discord.Embed(colour=Client.blank, title=title).set_image(url=f"https://raw.githubusercontent.com/mariohero24/randseal/fbba6657532d0b6db21c91986843a08a7ab19f26/randseal/00{sealrand}.jpg")
+			if title != None:
+				return discord.Embed(colour=Client.blank, title=title).set_image(url=f"https://raw.githubusercontent.com/mariohero24/randseal/fbba6657532d0b6db21c91986843a08a7ab19f26/randseal/00{sealrand}.jpg")
+			else:
+				return discord.Embed(colour=Client.blank).set_image(url=f"https://raw.githubusercontent.com/mariohero24/randseal/fbba6657532d0b6db21c91986843a08a7ab19f26/randseal/00{sealrand}.jpg")
 
-	async def fetchrole(self, context, id: int) -> discord.Role:
+	async def fetchrole(self, context, id: discord.object.SupportsIntCast) -> discord.Role:
 		"""
-		Returns a `discord.Role` from ID, regardless of the state of your bot's internal cache.
-		# Parameters
-		`context`: Can be any object with the `.guild` variable in it. 
-		`id`: The ID of the role you want to get
-		### Context Examples:
-		`discord.Message` (if message is in a guild), `discord.Member`, `discord.ApplicationContext`, `discord.ext.commands.Context`, `discord.Guild.owner`.
+		Returns a `discord.Role` that is really just a `discord.Object` for easy use, decided not to edit the class itself because it would be a nightmare to fix (reworked in v2.2.0)
 		"""
-		roles = await context.guild.fetch_roles()
-		return discord.utils.get(roles, id=id)
+		return discord.Object(id)
 
 	blank = 0x2f3136
-	"""A colour exactly like a `discord.Embed` (reworked in version 2.2.0)"""
+	"""A colour exactly like a `discord.Embed` (reworked in version 2.1.0)"""
 
 
 __author__: str = "Guard Boi"
