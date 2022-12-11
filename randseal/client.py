@@ -63,7 +63,7 @@ class Client:
 			else:
 				return discord.Embed(colour=Client.blank).set_image(url=f"https://raw.githubusercontent.com/mariohero24/randseal/fbba6657532d0b6db21c91986843a08a7ab19f26/randseal/00{sealrand}.jpg")
 
-	async def fetchrole(self, context, id: discord.object.SupportsIntCast) -> discord.Role:
+	async def fetchrole(self, context, id) -> discord.Role:
 		"""
 		Returns a `discord.Role` that is really just a `discord.Object` for easy use, decided not to edit the class itself because it would be a nightmare to fix (reworked in v2.2.0)
 		"""
