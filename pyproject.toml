@@ -4,6 +4,8 @@ requires = [
 	"py-cord",
     "requests",
     "aiohttp",
+    "aiofiles",
+    "advlink",
     "wheel"
 ]
 build-backend = "setuptools.build_meta"
