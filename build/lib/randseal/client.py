@@ -1,29 +1,18 @@
-import discord
 import aiohttp
 import aiofiles
-import requests
-import random
 import io
 import json
-from importlib import metadata
-import advlink
-
+import discord
 
 class Client:
 	"""
 	The client class for the randseal package containing everything (new in version 2.0.0)
 	"""
 
-	def __init__(self, session: aiohttp.ClientSession = None, session2: aiohttp.ClientSession = None, number: int | str | None = None):
+	def __init__(self, session: aiohttp.ClientSession = None, session2: aiohttp.ClientSession = None):
 		self.session = aiohttp.ClientSession(auto_decompress=False) or session
 		self.session2 = aiohttp.ClientSession() or session2
 
-		sealrand = f"{random.randrange(0, 82)}"
-		if len(sealrand) == 1:
-			sussy = sealrand
-			sealrand = "0" + f"{sussy}"
-		self.number = number or sealrand
-		"""A number between 1 and 82 (New in 1.3.0)"""
 
 	async def asyncFile(self):
 		"""
@@ -37,20 +26,11 @@ class Client:
 		"""
 		Returns a `discord.File()` of a seal for py-cord in a potentially blocking way
 		"""
+		import requests
 		sealrand = self.number
 		r = requests.get(
 			f"https://raw.githubusercontent.com/mariohero24/randseal/fbba6657532d0b6db21c91986843a08a7ab19f26/randseal/00{sealrand}.jpg", stream=True)
 		return discord.File(fp=io.BytesIO(r.content), filename=sealrand + ".jpg")
-
-	class classEmbed(discord.Embed):
-		"""`discord.Embed` subclass (New in 1.3.0)"""
-
-		def __init__(self, title: str | None = None):
-			e = Client()
-			if title != None:
-				super().__init__(colour=e.blank, title=title, url=str(e))
-			else:
-				super().__init__(colour=e.blank, url=str(e))
 
 	def Embed(self, title: str | None = None):
 		"""
@@ -61,12 +41,6 @@ class Client:
 			return discord.Embed(colour=self.blank, title=title).set_image(url=f"https://raw.githubusercontent.com/mariohero24/randseal/fbba6657532d0b6db21c91986843a08a7ab19f26/randseal/00{sealrand}.jpg")
 		else:
 			return discord.Embed(colour=self.blank).set_image(url=f"https://raw.githubusercontent.com/mariohero24/randseal/fbba6657532d0b6db21c91986843a08a7ab19f26/randseal/00{sealrand}.jpg")
-
-	async def fetchrole(self, context, id) -> discord.Role:
-		"""
-		Returns a `discord.Role` that is really just a `discord.Object` for easy use, decided not to edit the class itself because it would be a nightmare to fix (reworked in v2.2.0)
-		"""
-		return discord.Object(id)
 
 	@property
 	def blank(self) -> int:
@@ -94,12 +68,22 @@ class Client:
 		return hash(self)
 
 	@property
-	def advlink(self):
+	def advlink(self):	
+		import advlink
 		return advlink.Link(str(self), session=self.session, session2=self.session2)
 
 	@property
 	def url(self):
 		return self.advlink.url
+
+	@property
+	def number(self):
+		import random
+		sealrand = f"{random.randrange(0, 82)}"
+		if len(sealrand) == 1:
+			sussy = sealrand
+			sealrand = "0" + f"{sussy}"
+		return sealrand
 
 	def __str__(self):
 		sealrand = self.number
@@ -111,6 +95,9 @@ class Client:
 	def __int__(self):
 		return int(self.number)
 
+	def __ne__(self, obj: object) -> bool:
+		return str(self) != str(obj)
+
 
 __author__: str = "Guard Boi"
 """The author of the package"""
@@ -121,6 +108,7 @@ __description__: str = "Generates a random seal image for py-cord"
 __licence__: str = "MIT"
 """The licence type of the package"""
 
+from importlib import metadata
 __version__ = metadata.version("randseal")
 """The version of the package"""
 
