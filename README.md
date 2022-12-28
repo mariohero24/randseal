@@ -20,3 +20,5 @@ async def sealembed(ctx):
 
 bot.run("token")
 ```
+
+This package also contains several utility functions for making discord bots.

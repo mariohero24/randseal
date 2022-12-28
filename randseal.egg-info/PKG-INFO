@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: randseal
-Version: 2.4.0
+Version: 2.4.1
 Summary: Generates a random seal image for py-cord
 Home-page: https://github.com/mariohero24/randseal
 Author: Guard Boi
@@ -34,3 +34,5 @@ async def sealembed(ctx):
 
 bot.run("token")
 ```
+
+This package also contains several utility functions for making discord bots.
