@@ -24,3 +24,4 @@ SOFTWARE.
 
 
 from .client import Client, __author__, __description__, __licence__, __version__
+from .errors import error

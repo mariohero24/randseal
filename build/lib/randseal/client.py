@@ -3,9 +3,30 @@ import aiohttp
 import aiofiles
 import io
 import json
-import discord
-from typing import Any
+from .errors import two_hundred_error as error
+from typing import TYPE_CHECKING, Union, Optional
+if TYPE_CHECKING:
+	from typing_extensions import Self
+	from typing import Any, Protocol
+	from os import PathLike
 
+	class FileLike(Protocol):
+		def __call__(
+			self,
+			fp: Union[str, bytes, PathLike[Any], io.BufferedIOBase],
+			filename: Optional[str] = None,
+			**kwargs: Any,
+		) -> Self:
+			...
+
+	class EmbedLike(Protocol):
+		def __call__(
+			self,
+			**kwargs: Any,
+		) -> Self:
+			...
+		def set_image(self, *, url: str) -> Self:
+			pass
 
 class Client:
 	"""
@@ -16,23 +37,30 @@ class Client:
 		self.session = aiohttp.ClientSession(auto_decompress=False) or session
 		self.session2 = aiohttp.ClientSession() or session2
 
-	async def File(self):
+	async def File(self, cls: FileLike):
 		"""
-		Returns a `discord.File()` of a seal for py-cord (new in version 2.0.0, renamed in version 2.4.1)
+		Returns a `File` of a seal (new in version 2.0.0, renamed in version 2.4.1)
 		"""
 		async with self.session.get(self.url) as r:
-			hi = io.BytesIO(await r.read())
-			return discord.File(fp=hi, filename=self.number + ".jpg")
+			if r.status == 200:
+				hi = io.BytesIO(await r.read())
+				return cls(fp=hi, filename=self.number + ".jpg")
+			else:
+				raise error
 
 
-	def Embed(self, title: str | None = None):
+	def Embed(self, cls: EmbedLike):
 		"""
-		Returns a `discord.Embed()` of a seal which can be edited or used in a message
+		Returns an `Embed` of a seal which can be edited or used in a message
+
+		Parameters
+		----------
+
+		:class:`cls`
+
+		A py-cord `File` or a discord.py `File`
 		"""
-		if title != None:
-			return discord.Embed(colour=self.blank, title=title).set_image(url=self.url)
-		else:
-			return discord.Embed(colour=self.blank).set_image(url=self.url)
+		return cls(colour=self.blank).set_image(url=self.url)
 
 	@property
 	def blank(self) -> int:
