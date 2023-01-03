@@ -4,8 +4,9 @@ Simple package that can produce a seal image. The image is then output as a `dis
 ### Usage example. Bot can be a commands.Bot in discord.py or a discord.Bot in py-cord.
 ```py
 import randseal
+import discord
 
-bot = Bot(intents=discord.Intents.default())
+bot = discord.Bot(intents=discord.Intents.default())
 client = randseal.Client()
 
 @bot.command()
