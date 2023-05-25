@@ -1,2 +1,3 @@
-EXCLUDE test.py
-EXCLUDE .GITIGNORE
+exclude test.py
+exclude .GITIGNORE
+exclude randseal/__pycache__
